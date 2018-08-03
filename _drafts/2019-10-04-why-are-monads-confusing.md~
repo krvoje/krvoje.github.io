@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "Why are monads confusing - musings on jargon, monads and types"
+date:   2019-10-04 07:43:23 +0200
+categories: functional-programming categorical-programming scala monads
+---
+
+For such a simple programming pattern, monads seem to generate a lot
+of confusion. With FP-beginners they cause endless discussions and
+long explanation sessions. For people who do understand the topic,
+"_they immediately lose the ability to explain it to others_". They
+can probably even evoke a sense of intellectual elitism being directed
+towards the uninitiated, along with the rest of the categorical programming
+jargon.
+
+The cause of this is mix-and-match of different 
+
+# Musings on monads from different perspectives
+
+## Grease Monkey 
+
+Something you can put into a for comprehension
+
+{% highlight scala %}
+
+  import monad.Monad;
+  
+  for {
+    x <- Monad(123)
+    y <- Monad("4")
+    z <- Monad(true)
+  } yield {
+    s"$x > $y = $z"
+  }
+
+{% endhighlight %}
+
+##
+
+{% highlight scala %}
+
+  class Box[X](x: X) implements Monad[X] {
+    // Just an alias for the constructor
+    override def pure[A](a: A) = new Box(a)
+    
+    override def flatMap[X,Y](f: X => Monad[Y]): Monad[B] =  
+  }
+
+{% endhighlight %}
+
+# A monad is _just a monoid in the category of endofunctors..._
